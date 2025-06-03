@@ -4,7 +4,7 @@ A machine learning-powered web app that predicts the outcome of Pokémon battles
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 - [About](#about)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
@@ -16,14 +16,14 @@ A machine learning-powered web app that predicts the outcome of Pokémon battles
 
 ---
 
-## 📖 About
+## About
 
 This project is a full-stack data science application that predicts which Pokémon would win in a one-on-one battle. 
 It combines data preprocessing, simulation-based model training, and a Flask-based web frontend.
 
 ---
 
-## 🚀 Features
+## Features
 
 - Predicts battle outcomes using Pokémon stats and type matchups
 - Clean and responsive web interface
@@ -32,7 +32,7 @@ It combines data preprocessing, simulation-based model training, and a Flask-bas
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 - **Python** – Data manipulation and model training
 - **Flask** – Web framework for API and frontend
@@ -42,7 +42,7 @@ It combines data preprocessing, simulation-based model training, and a Flask-bas
 
 ---
 
-## 🛠️ Getting Started
+## Getting Started
 
 1. Clone the repository:
    ```bash
@@ -64,14 +64,14 @@ The app will be live at `http://localhost:5001`.
 
 ---
 
-## 🎮 Usage
+## Usage
 
 - Enter two Pokémon names into the form (e.g., Charizard vs Blastoise).
 - The app will predict the winner and show their stats and artwork.
 
 ---
 
-## 🧠 Model Details
+## Model Details
 
 The prediction model was trained on a dataset of 50,000 simulated battles based on:
 
@@ -86,12 +86,12 @@ The prediction model was trained on a dataset of 50,000 simulated battles based 
 
 ---
 
-## 🖼️ Screenshots
+## Screenshots
 
 ![App UI](screenshots/app_ui.png)
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
