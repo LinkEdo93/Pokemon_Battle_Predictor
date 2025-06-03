@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pokémon Battle Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input[type=text], input[type=submit] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        h2, h3 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        table th, table td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        .images-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .images-container img {
+            width: 150px;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <h2>Pokémon Battle Predictor</h2>
+    <form action="/predict" method="post">
+        <label for="pokemon1">First Pokémon:</label>
+        <input list="pokemon_list" name="pokemon1" placeholder="e.g. Charizard" required>
+
+        <label for="pokemon2">Second Pokémon:</label>
+        <input list="pokemon_list" name="pokemon2" placeholder="e.g. Blastoise" required>
+
+        <datalist id="pokemon_list">
+            {% for name in pokemon_names %}
+                <option value="{{ name }}">
+            {% endfor %}
+        </datalist>
+
+        <input type="submit" value="Predict Battle">
+    </form>
+
+    {% if prediction_text %}
+        <h3 style="color: green;">{{ prediction_text }}</h3>
+
+        {% if poke1_stats and poke2_stats %}
+            <div class="images-container">
+                <div>
+                    <img src="{{ poke1_image_url }}" alt="{{ poke1_name }}">
+                    <p style="text-align: center;"><strong>{{ poke1_name }}</strong></p>
+                </div>
+                <div>
+                    <img src="{{ poke2_image_url }}" alt="{{ poke2_name }}">
+                    <p style="text-align: center;"><strong>{{ poke2_name }}</strong></p>
+                </div>
+            </div>
+
+            <h3>📊 Stat Comparison</h3>
+            <p style="text-align: center;">
+                <strong>{{ poke1_name }}</strong> ({{ p1_type1 }} / {{ p1_type2 }}) vs 
+                <strong>{{ poke2_name }}</strong> ({{ p2_type1 }} / {{ p2_type2 }})
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th style="text-align: left;">Stat</th>
+                        <th>{{ poke1_name }}</th>
+                        <th>{{ poke2_name }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stat in poke1_stats.keys() %}
+                    <tr>
+                        <td>{{ stat }}</td>
+                        {% set v1 = poke1_stats[stat] %}
+                        {% set v2 = poke2_stats[stat] %}
+                        <td style="color: {{ 'green' if v1 > v2 else 'red' if v1 < v2 else 'black' }};">{{ v1 }}</td>
+                        <td style="color: {{ 'green' if v2 > v1 else 'red' if v2 < v1 else 'black' }};">{{ v2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
