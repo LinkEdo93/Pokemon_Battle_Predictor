@@ -60,7 +60,7 @@ It combines data preprocessing, simulation-based model training, and a Flask-bas
    python app.py
    ```
 
-The app will be live at `http://localhost:5001`.
+The app will be live at `http://localhost:5000`.
 
 ---
 
